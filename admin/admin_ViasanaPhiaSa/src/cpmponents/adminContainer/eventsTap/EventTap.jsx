@@ -4,6 +4,7 @@ const EventTap = () =>{
 
     return(
         <>
+        <span>hello i'm event</span>
         </>
     )
 }

@@ -13,9 +13,8 @@ const AdminContainer =() =>{
 
     function handleActiveTap(id){
         setActiveTap(a=>a=id)
-        console.log(activeTap)
     }
-
+    
 
 
     return (
