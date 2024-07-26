@@ -2,10 +2,21 @@ import "./DataTap.css"
 import "./GetNameForm.css"
 import Card from "./Card"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 
 const DataTap = () =>{
     const [adding, setAdding] = useState(false)
+
+    //function
+    var getNameFormPos
+    const handleAdding = ()=>{
+        const card = document.getElementById("getName")
+        if(card){
+            getNameFormPos = card.getBoundingClientRect(); 
+        }
+        setAdding(adding=>!adding)
+    }
     
     const GetNameForm = (props)=>{
         const handleCancel = (event) => {
@@ -16,9 +27,10 @@ const DataTap = () =>{
         const handleOk = (event) => {
             event.preventDefault();
             setAdding(adding=>adding=!adding)
+            toast.success("Added")
         }
         return(
-            <form action="" method="get" id="getName" className="getNameForm">
+            <form action="" method="get" id="getName" className="getNameForm" >
                 <div>{props.name + " name?"}</div>
                 <input type="text" name="nameInput" placeholder="Type here"/>
                 <div className="buttons">
@@ -29,6 +41,9 @@ const DataTap = () =>{
         )
     }
 
+    //get data
+    
+
     return(
         <div className="dataTap">
             <div className="TapTitle">Data</div>
@@ -37,40 +52,11 @@ const DataTap = () =>{
                 <div className="cardsList">
                     <Card />
                     <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <button className="addBar" onClick={()=>setAdding(adding=>!adding)}>+</button>
+                    
+                    <button className="addBar" onClick={()=>handleAdding()}>+</button>
                 </div>
             </div>
-            {adding&&<GetNameForm name="phan"/>}
+            {adding&&<GetNameForm name="phan" rect={getNameFormPos}/>}
         </div>
     )
 }
