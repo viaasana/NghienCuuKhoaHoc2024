@@ -1,13 +1,32 @@
 import "./DataTap.css"
 import "./GetNameForm.css"
 import Card from "./Card"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast } from "react-toastify"
+import { db } from "../../../lib/firebase"
+import {getDocs, collection, doc, getDoc} from 'firebase/firestore'
+import Chapter from "../../../collection/Chapter"
+
 
 
 const DataTap = () =>{
     const [adding, setAdding] = useState(false)
-
+    const [ChapterList, setChapterList] = useState([])
+    
+    const chapterColectionRef = collection(db, "chapters")
+    useEffect(()=>{
+        const getChapterList = async()=>{
+            try {
+                const _chapterList = await getDocs(chapterColectionRef)
+                const ChapterList = _chapterList.docs.map((doc)=>(new Chapter(doc)))
+                setChapterList(ChapterList)
+                
+            } catch (error) {
+                console.error(error)
+            }
+        }
+        getChapterList()
+    }, [])
     //function
     var getNameFormPos
     const handleAdding = ()=>{
@@ -41,7 +60,7 @@ const DataTap = () =>{
         )
     }
 
-    //get data
+
     
 
     return(
@@ -50,9 +69,11 @@ const DataTap = () =>{
             <span>Total 1</span>
             <div className="list">
                 <div className="cardsList">
-                    <Card />
-                    <Card />
-                    
+                    {
+                        ChapterList.map((chapter)=>{
+                            <Card name={chapter.name} />
+                        })
+                    }
                     <button className="addBar" onClick={()=>handleAdding()}>+</button>
                 </div>
             </div>

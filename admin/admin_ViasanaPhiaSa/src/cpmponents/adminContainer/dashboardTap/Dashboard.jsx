@@ -1,10 +1,10 @@
 import "./Dashboard.css"
 
-const DashBoard = () =>{
 
+const DashBoard = () =>{
     return(
         <>
-         <span>hello i'm dashboard</span>
+         <span>hello</span>
         </>
     )
 }
