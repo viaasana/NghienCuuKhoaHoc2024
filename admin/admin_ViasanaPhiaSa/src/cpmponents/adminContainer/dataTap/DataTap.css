@@ -15,44 +15,20 @@
     .list{
         overflow-y: scroll;
         max-height: 500px;
+        
         .cardsList{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 24px;
-            .card{
-                width: 80%;
-                height: 105px;
-                background-color: #0029FF;
-                border-radius: 10px;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-    
-                span{
-                    margin: 5px;
-                    color: #FFFFFF;
-                    font: roboto;
-    
-                }
-    
-                button{
-                    margin-right: 10px;
-                    background-color: red;
-                    font-size: 15px;
-                    border-radius: 6px;
-                }
+            .column{
+                height: 250px;
+                float: left;
+                margin: 10px 10px;
             }
             .addBar{
-                width: 80%;
-                height: 50px;
-                background-color: #6485E5;
-                text-align: center;
-                font-size: 30px;
+                width: 250px;
+                height: 250px;
+                background-color: unset;
                 border-radius: 10px;
                 cursor: pointer;
+                border: 1px solid black;
             }
         }
     }

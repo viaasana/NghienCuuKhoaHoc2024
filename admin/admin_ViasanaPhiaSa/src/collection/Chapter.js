@@ -1,5 +1,5 @@
 import { db } from "../lib/firebase"
-import { collection,getDoc, doc } from "firebase/firestore"
+import { getDoc, doc } from "firebase/firestore"
 
 export default class Chapter{
     constructor(doc){
@@ -8,21 +8,19 @@ export default class Chapter{
         this.lessonId = data.lessonId
         this.length = data.lessonId.length
         this.nameId = data.nameId
-        this.name = null
+        this.name = "laoding .........."
 
-        this.initialize()
     }
     async initialize(){
         this.name = await this.renderName();
-        console.log(this.name);
     }
     async renderName(){
         try {
-            const docRef = doc(db, "contents", this.id);
+            const docRef = doc(db, "contents", this.nameId);
             const docSnap = await getDoc(docRef);
                 
             if (docSnap.exists()) {
-                return docSnap.data().Khmer
+                return docSnap.data().English
             } else {
                 // docSnap.data() will be undefined in this case
                 return "undefine!"
